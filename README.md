@@ -77,6 +77,17 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+> 1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+Dalam kasus BambangShop ini, `trait` belum diperlukan karena implementasi pada `Subscriber` tidak memerlukan polimorfisme, di mana hal ini adalah tujuan digunakannya `trait`. Oleh karena itu, implementasi menggunakan satu `struct` saja sudah cukup untuk `Subscriber` saat ini.
+
+> 2. id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+Pengunaan `DashMap` sudah tepat dalam kasus ini karena dengan menggunakan `DashMap`, kita dapat menyimpan `Subscriber` berdasarkan url sebagai key. Lalu, untuk proses pencarian dan penghapusan juga akan berjalan lebih cepat dibanding `Vec` yang perlu menelusuri satu per satu. Selain itu, `DashMap` juga bersifat *thread-safe*, yaitu kode atau struktur data dapat digunakan oleh beberapa thread secara bersamaan tanpa menyebabkan *race condition* atau *data corruption* sehingga aman untuk penggunaan paralel.
+
+> 3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+Penggunaan Singleton pattern hanya menjamin adanya satu instance dan setiap akses harus dikunci (lock()) di mana hal ini dapat menyebabkan *bottleneck*. Oleh karena itu, penggunaan `DashMap` sudah tepat karena bersifat *thread-safe concurrent HashMap* yang memungkinkan banyak thread membaca dan menulis data secara bersamaan tanpa perlu *explicit locking*.
 
 #### Reflection Publisher-2
 

@@ -1,5 +1,6 @@
 # BambangShop Publisher App
 Tutorial and Example for Advanced Programming 2024 - Faculty of Computer Science, Universitas Indonesia
+### Madeline Clairine Gultom - 2306207846 - ADPRO A
 
 ---
 
@@ -58,12 +59,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -90,5 +91,16 @@ Pengunaan `DashMap` sudah tepat dalam kasus ini karena dengan menggunakan `DashM
 Penggunaan Singleton pattern hanya menjamin adanya satu instance dan setiap akses harus dikunci (lock()) di mana hal ini dapat menyebabkan *bottleneck*. Oleh karena itu, penggunaan `DashMap` sudah tepat karena bersifat *thread-safe concurrent HashMap* yang memungkinkan banyak thread membaca dan menulis data secara bersamaan tanpa perlu *explicit locking*.
 
 #### Reflection Publisher-2
+> 1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+Dengan memisahkan **Service** dengan **Repository** akan membuat pemeliharaan proyek lebih mudah karena **Service** lebih berfokus untuk logika bisnis dan **Repository** berfokus pada akses data, di mana hal ini juga memenuhi prinsip **Single Responsibility (SRP)**. Selain itu, jika ke depannya terdapat perubahan, seperti mengganti sumber data, kita hanya perlu mengubah **Repository** tanpa mengutak-atik **Model** dan **Service**.
+
+> 2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+Seperti yang telah dijelaskan pada nomor 1, jika semua tergabung pada **Model**, maka logika bisnis dan akses data akan bercampur dalam satu kelas atau `struct`. Hal ini akan membuat kode sulit dikelola, ketika ada perubahan, harus langsung mengubah banyak bagian pada **Model**. Kode akan sulit dibaca dan dipahami jika nantinya proyek memiliki banyak model. Dari sisi *testing* juga akan sulit dijalani karena semua berkumpul dalam satu kelas.
+
+> 3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Ya, pada mata kuliah di semester yang lalu juga sudah sempat menggunakan Postman sehingga sudah cukup familiar. Postman sangat membantu bagi saya pribadi terutama dalam menguji kebenaran kode saya, seperti menguji berbagai metode HTTP (GET, POST, DELETE), melihat respon dari server dalam bentuk JSON, mengrim request tanpa harus menulis kode tambahan. Fitur yang saya sukai dari Postman adalah environment variablesnya yang memperbolehkan untuk menyimpan URL API sehingga mudah digunakan kembali.
 
 #### Reflection Publisher-3
